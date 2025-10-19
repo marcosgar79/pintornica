@@ -1,0 +1,659 @@
+/* ==== Reset general ==== */
+html, body {
+  margin: 0;     /* 🔹 elimina márgenes predeterminados */
+  padding: 0;    /* 🔹 elimina relleno predeterminado */
+  width: 100%;
+  overflow-x: hidden; /* 🔹 evita scroll horizontal accidental */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+
+
+/* ==== Barra superior ==== */
+.social-bar {
+  width: 100%;                /* 🔹 ocupa todo el ancho de la página */
+  background-color: #150ca3;
+  height: 80px;               /* más alta para buena visibilidad */
+  display: flex;
+  justify-content: flex-end;  /* 🔹 alinea iconos a la derecha */
+  align-items: center;        /* centra verticalmente */
+  padding-right: 40px;        /* 🔹 separación del borde derecho */
+  box-sizing: border-box;     /* evita que el padding rompa el ancho */
+}
+
+/* Contenedor de iconos */
+.social-icons {
+  display: flex;
+  gap: 25px;                  /* 🔹 separación uniforme entre iconos */
+}
+
+/* Iconos individuales */
+.social-icon {
+  color: rgb(9, 232, 9);
+  font-size: 1.8rem;
+  transition: color 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+
+/* Efecto hover por red social */
+.social-icon.facebook:hover { color: #1877f2; transform: scale(1.2); }
+.social-icon.instagram:hover { color: #e4405f; transform: scale(1.2); }
+.social-icon.youtube:hover { color: #ff0000; transform: scale(1.2); }
+.social-icon.whatsapp:hover { color: #25d366; transform: scale(1.2); }
+
+/* ==== Header principal ==== */
+.main-header {
+  display: flex;
+  justify-content: space-between; /* logo a la izquierda, menú a la derecha */
+  align-items: center;            /* centra verticalmente ambos */
+  padding: 20px 60px;             /* espacio interno */
+  background-color: #f9e7ac;
+  font-family: "Krub", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  
+}
+
+/* Logo y título */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 350px;         /* más grande */
+  height: 130px;
+  object-fit: cover;    /* evita distorsión */
+  
+}
+
+.site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Menú de navegación */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 45px;            /* separación entre los enlaces */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #f1c40f;
+}
+
+/* Botón de contacto */
+.btn-contacto {
+  background-color: #f1c40f;
+  color: #111;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-contacto:hover {
+  background-color: #111;
+  color: #f1c40f;
+}
+
+
+
+/* ==== Efecto líneas arriba y abajo SOLO en items normales del menú ==== */
+.nav-menu li:not(:last-child) .nav-link {
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-menu li:not(:last-child) .nav-link::before,
+.nav-menu li:not(:last-child) .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #120e01;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-menu li:not(:last-child) .nav-link::before {
+  top: 0;
+  transform-origin: left;
+}
+
+.nav-menu li:not(:last-child) .nav-link::after {
+  bottom: 0;
+  transform-origin: right;
+}
+
+.nav-menu li:not(:last-child) .nav-link:hover::before,
+.nav-menu li:not(:last-child) .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+
+
+/* ==== Carrusel ==== */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* ocupa gran parte de la pantalla */
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Texto encima de la imagen */
+.carousel-text {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  max-width: 500px;
+}
+
+.carousel-text h2 {
+  font-size: 3rem;
+  font-family: "Dancing Script", cursive;
+  margin-bottom: 10px;
+}
+
+.carousel-text p {
+  font-size: 1.4rem;
+  font-family: "Krub", sans-serif;
+}
+
+/* Indicadores (círculos) */
+.carousel-indicators {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 2;
+}
+
+.indicator {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.indicator.active {
+  background-color: #f1c40f;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background-color: #f1c40f;
+}
+
+
+
+/* ==== Animación del texto del carrusel ==== */
+.carousel-text {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+  max-width: 500px;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.8s ease, transform 1s ease;
+}
+
+/* Cuando el slide está activo, el texto se anima */
+.carousel-slide.active .carousel-text {
+  opacity: 1;
+  transform: translateX(30%); /* 🔹 llega hasta un poco menos de la mitad */
+}
+
+/* Pequeño ajuste en títulos y párrafos */
+.carousel-text h2 {
+  font-size: 2.8rem;
+  font-family: "Dancing Script", cursive;
+  margin-bottom: 10px;
+}
+
+.carousel-text p {
+  font-size: 1.3rem;
+  font-family: "Krub", sans-serif;
+}
+
+
+/* =====================================
+   🔹 RESPONSIVIDAD 🔹
+   ===================================== */
+
+/* ==== Tablets (pantallas medianas) ==== */
+@media (max-width: 992px) {
+  /* Header */
+  .main-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    width: 250px;
+    height: auto;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+  }
+
+  /* Carrusel */
+  .carousel-container {
+    height: 50vh;
+  }
+
+  .carousel-text {
+    left: 8%;
+    bottom: 10%;
+    max-width: 400px;
+  }
+
+  .carousel-text h2 {
+    font-size: 2rem;
+  }
+
+  .carousel-text p {
+    font-size: 1.1rem;
+  }
+
+  /* Social bar */
+  .social-bar {
+    height: 60px;
+    padding-right: 20px;
+  }
+
+  .social-icon {
+    font-size: 1.5rem;
+  }
+}
+
+/* ==== Celulares (pantallas pequeñas) ==== */
+@media (max-width: 768px) {
+  /* Header */
+  .main-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 15px;
+  }
+
+  .logo {
+    width: 200px;
+    height: auto;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+  }
+
+  .btn-contacto {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  /* Carrusel */
+  .carousel-container {
+    height: 40vh;
+  }
+
+  .carousel-text {
+    left: 5%;
+    bottom: 8%;
+    max-width: 80%;
+  }
+
+  .carousel-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-text p {
+    font-size: 1rem;
+  }
+
+  /* Indicadores del carrusel */
+  .carousel-indicators {
+    right: 10px;
+    gap: 10px;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Social bar */
+  .social-bar {
+    justify-content: center;
+    height: 50px;
+    padding-right: 0;
+  }
+
+  .social-icons {
+    gap: 15px;
+  }
+
+  .social-icon {
+    font-size: 1.4rem;
+  }
+}
+
+/* ==== Celulares muy pequeños (menos de 480px) ==== */
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 35vh;
+  }
+
+  .carousel-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-text p {
+    font-size: 0.9rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .btn-contacto {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
+}
+
+
+
+
+
+/* =====================================
+   🎨 SECCIÓN DE PINTURAS (PRODUCT-GRID)
+   ===================================== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 🔹 Se adapta al ancho */
+  gap: 40px;
+  padding: 60px 80px;
+  background-color: #fff9e6;
+  justify-items: center;
+  font-family: "Krub", sans-serif;
+}
+
+.product-item {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width: 100%;
+  max-width: 360px;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Imagen */
+.product-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 4px solid #f1c40f;
+  transition: transform 0.4s ease;
+}
+
+.product-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Título */
+.product-item h3 {
+  margin: 15px 0 5px;
+  font-size: 1.5rem;
+  color: #111;
+  font-weight: 700;
+  font-family: "Dancing Script", cursive;
+}
+
+/* Botón Ver más */
+.product-item p {
+  background-color: #150ca3;
+  color: #fff;
+  display: inline-block;
+  padding: 10px 25px;
+  border-radius: 30px;
+  margin: 10px 0 20px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.product-item p:hover {
+  background-color: #f1c40f;
+  color: #111;
+}
+
+/* =====================================
+   🖤 FOOTER
+   ===================================== */
+footer {
+  background-color: #150ca3;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  font-family: "Krub", sans-serif;
+  margin-top: 60px;
+}
+
+.footer-content p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  font-size: 1rem;
+}
+
+.footer-links a {
+  color: #f1c40f;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+/* =====================================
+   📱 RESPONSIVIDAD
+   ===================================== */
+@media (max-width: 768px) {
+  .product-grid {
+    padding: 40px 20px;
+    gap: 25px;
+  }
+
+  .product-item img {
+    height: 200px;
+  }
+
+  .product-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .product-item p {
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+
+  footer {
+    padding: 30px 15px;
+  }
+
+  .footer-content p {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+/* ==== Contenedor general ==== */
+.contenedor {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* ==== Título de la sección ==== */
+.titulo-seccion {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.titulo-seccion::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background-color: #e1a100; /* color dorado/amarillo artístico */
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* ==== Grilla de productos ==== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  justify-items: center;
+}
+
+/* ==== Cada bloque de producto ==== */
+.product-item {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+  padding-bottom: 20px;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* ==== Título del servicio encima de la imagen ==== */
+.servicio-titulo {
+  font-size: 1.4rem;
+  color: #d48b00;
+  margin: 20px 0 10px 0;
+  text-transform: uppercase;
+}
+
+/* ==== Imagen ==== */
+.product-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* ==== Nombre del tipo de pintura ==== */
+.product-item h4 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* ==== Botón o enlace ==== */
+.product-item p {
+  color: #faf6f6;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.product-item p:hover {
+  color: #19573b;
+}
